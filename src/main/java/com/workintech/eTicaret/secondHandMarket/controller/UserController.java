@@ -1,8 +1,10 @@
 package com.workintech.eTicaret.secondHandMarket.controller;
 
+import com.workintech.eTicaret.secondHandMarket.dto.CreateUserRequest;
+import com.workintech.eTicaret.secondHandMarket.dto.UpdateUserRequest;
+import com.workintech.eTicaret.secondHandMarket.dto.UserDto;
 import com.workintech.eTicaret.secondHandMarket.entity.User;
 import com.workintech.eTicaret.secondHandMarket.service.UserService;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,16 +20,16 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>>  getAllUsers(){
+    public ResponseEntity<List<UserDto>>  getAllUsers(){
         return ResponseEntity.ok(userService.getAllUsers());
     }
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") Long id){
-        return ResponseEntity.ok(userService.getUserbyId(id));
+    public ResponseEntity<UserDto> getUserById(@PathVariable("id") Long id){
+        return ResponseEntity.ok(userService.getUserById(id));
     }
 
     @PostMapping//201
-    public ResponseEntity<User> createUser(@RequestBody User user){
+    public ResponseEntity<UserDto> createUser(@RequestBody CreateUserRequest userRequest){
         return ResponseEntity.ok(userService.createUser(userRequest));
     };
 
